@@ -45,6 +45,7 @@ def pars(inp_text: str = '', inp_page: int = 0) -> None:
                 session.add(vacancy)
                 session.commit()
     print([
+        inp_text,
         ret['found'],
         ret['page'],
         ret['pages'],
@@ -56,7 +57,8 @@ def pars(inp_text: str = '', inp_page: int = 0) -> None:
 
 def main() -> None:
     init_db()
-    pars()
+    for item in ['python', 'fastapi', 'postgresql']:
+        pars(item)
 
 
 if __name__ == "__main__":
