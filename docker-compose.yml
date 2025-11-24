@@ -1,0 +1,27 @@
+services:
+  postgres:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: example
+    volumes:
+      - pgdata:/var/lib/postgresql
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready']
+      interval: 1s
+      timeout: 5s
+      retries: 10
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: 'example@example.com'
+      PGADMIN_DEFAULT_PASSWORD: 'example'
+
+volumes:
+  pgdata:
